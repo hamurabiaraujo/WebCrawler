@@ -34,6 +34,9 @@ public class Main {
 	}
 	
 	public static void menu() {
+		System.out.println("1 - inserir um ou uma lista de urls");
+		System.out.println("2 - inserir lista de palavras chaves a serem buscadas [separadas por vírgula]");
+		System.out.println("1 - inserir um ou uma lista de urls");
 		
 	}
 
