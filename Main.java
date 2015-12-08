@@ -1,3 +1,6 @@
+import java.io.IOException;
+import java.net.MalformedURLException;
+import java.net.URL;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Scanner;
@@ -56,6 +59,9 @@ public class Main {
 			search.setDepth(reader.nextInt());
 			break;
 		case 5:
+			search.setDepth(reader.nextInt());
+			break;
+		case 6:
 			System.exit(9);
 			break;
 		default:
@@ -67,25 +73,32 @@ public class Main {
 	}
 	
 	public static void menu() {
-		System.out.println("1 - inserir uma lista de links");
-		System.out.println("2 - inserir uma ou uma lista de palavras chaves a serem buscadas [separadas por vírgula]");
+		System.out.println("1 - inserir a lista de links");
+		System.out.println("2 - inserir a lista de palavras chaves a serem buscadas [separadas por vírgula]");
 		if (search.getReturnAll())
 			System.out.println("3 - desativar o retorno de todas as páginas, independente de palavras-chave");
 		else 
 			System.out.println("3 - ativar o retorno de todas as páginas, independente de palavras-chave");
 		System.out.println("4 - profundidade máxima de busca");
-		System.out.println("5 - sair");
+		System.out.println("5 - iniciar busca");
+		System.out.println("6 - sair");
 		
 		getOptionSelected();
 	}
 
 	/**
 	 * @param args
+	 * @throws IOException 
+	 * @throws MalformedURLException 
 	 */
-	public static void main(String[] args) {
+	public static void main(String[] args) throws MalformedURLException, IOException {
 		// TODO Auto-generated method stub
 		menu();
-
+		
+		ArrayList<String> urls = search.getUrls();
+		for (String url : urls){
+			search.getRelatedLinksOfPage(new URL(url));
+		}
 	}
 
 }
