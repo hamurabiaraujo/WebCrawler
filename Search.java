@@ -1,12 +1,13 @@
 import java.awt.List;
+import java.util.ArrayList;
 
 /**
  * @author Hamurabi Araújo
  *
  */
 public class Search {
-	private List urls;
-	private List keyWords;
+	private ArrayList<String> urls;
+	private ArrayList<String> keyWords;
 	private Boolean returnAll;
 	private int depth;
 	
@@ -16,6 +17,7 @@ public class Search {
 	 */
 	public Search() {
 		// TODO Auto-generated constructor stub
+		returnAll = false;
 	}
 
 
@@ -38,7 +40,7 @@ public class Search {
 	/**
 	 * @return the urls
 	 */
-	public List getUrls() {
+	public ArrayList<String> getUrls() {
 		return urls;
 	}
 
@@ -46,7 +48,7 @@ public class Search {
 	/**
 	 * @param urls the urls to set
 	 */
-	public void setUrls(List urls) {
+	public void setUrls(ArrayList<String> urls) {
 		this.urls = urls;
 	}
 
@@ -54,7 +56,7 @@ public class Search {
 	/**
 	 * @return the keyWords
 	 */
-	public List getKeyWords() {
+	public ArrayList<String> getKeyWords() {
 		return keyWords;
 	}
 
@@ -62,7 +64,7 @@ public class Search {
 	/**
 	 * @param keyWords the keyWords to set
 	 */
-	public void setKeyWords(List keyWords) {
+	public void setKeyWords(ArrayList<String> keyWords) {
 		this.keyWords = keyWords;
 	}
 

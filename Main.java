@@ -1,4 +1,5 @@
-import java.awt.List;
+import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.Scanner;
 
 /**
@@ -10,35 +11,72 @@ import java.util.Scanner;
  *
  */
 public class Main {
+	public static Search search =  new Search();
 	/**
-	 * @param n número de links a ler
-	 * @return uma lista com todos os links inseridos
+	 * @param number of links to read
+	 * @return url list
 	 */
-	public static List getStarterUrl( int n ) {
-		List starter = new List();
+	public static ArrayList<String> getStarterUrl() {
+		Scanner reader = new Scanner(System.in);
+		String line = reader.nextLine();
 		
-		do {
-			Scanner reader = new Scanner(System.in);
-			starter.add(reader.nextLine());
-			reader.close();
-			n--;
-		} while ( n > 0);
-		
-		return starter;
+		ArrayList<String> urls = new ArrayList<String>(Arrays.asList(line.split(", ")));
+		reader.close();
+		return urls;
 	}
 	
-	public static List getKeyWords() {
-		List keyWords = new List();
+	public static ArrayList<String> getKeyWords() {
+		Scanner reader = new Scanner(System.in);
+		String line = reader.nextLine();
+		
+		ArrayList<String> keyWords = new ArrayList<String>(Arrays.asList(line.split(", ")));
+		reader.close();
 		
 		return keyWords;
 	}
 	
-	public static void menu() {
-		System.out.println("1 - inserir um ou uma lista de urls");
-		System.out.println("2 - inserir lista de palavras chaves a serem buscadas [separadas por vírgula]");
-		System.out.println("3 - retornar todas as páginas, independente de palavras-chave");
-		System.out.println("4 - profundidade máxima de busca");
+	public static void getOptionSelected() {
+		Scanner reader = new Scanner(System.in);
+		int option = reader.nextInt();
 		
+		switch (option) {
+		case 1:
+			search.setUrls(getStarterUrl());
+			break;
+		case 2:
+			search.setKeyWords(getKeyWords());
+			break;
+		case 3:
+			if (search.getReturnAll())
+				search.setReturnAll(false);
+			else
+				search.setReturnAll(true);
+			break;
+		case 4:
+			search.setDepth(reader.nextInt());
+			break;
+		case 5:
+			System.exit(9);
+			break;
+		default:
+			menu();
+			break;
+		}
+		
+		reader.close();
+	}
+	
+	public static void menu() {
+		System.out.println("1 - inserir uma lista de links");
+		System.out.println("2 - inserir uma ou uma lista de palavras chaves a serem buscadas [separadas por vírgula]");
+		if (search.getReturnAll())
+			System.out.println("3 - desativar o retorno de todas as páginas, independente de palavras-chave");
+		else 
+			System.out.println("3 - ativar o retorno de todas as páginas, independente de palavras-chave");
+		System.out.println("4 - profundidade máxima de busca");
+		System.out.println("5 - sair");
+		
+		getOptionSelected();
 	}
 
 	/**
@@ -46,6 +84,7 @@ public class Main {
 	 */
 	public static void main(String[] args) {
 		// TODO Auto-generated method stub
+		menu();
 
 	}
 
